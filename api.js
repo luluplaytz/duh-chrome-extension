@@ -11,7 +11,7 @@ export async function fetchData(domain) {
     }
 
     // Get a list of vouchers
-    const response = await fetch("http://localhost:3000/api/dies");
+    const response = await fetch("https://duh-api.netlify.app/api");
     if (!response.ok) {
       console.error("Server responded with an error:", response.status);
       throw new Error("Server responded with an error");

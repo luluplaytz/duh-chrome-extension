@@ -8,6 +8,6 @@
     "default_popup": "popup.html",
     "default_icon": "default_icon.png"
   },
-  "host_permissions": ["http://localhost:3000/api"]
+  "host_permissions": ["https://duh-api.netlify.app/api"]
 
 }
