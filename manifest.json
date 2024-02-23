@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Duh",
+  "version": "1.0",
+  "description": "A Chrome extension to get voucher codes for your favourite stores",
+  "permissions": ["storage", "activeTab", "tabs"],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "default_icon.png"
+  },
+  "host_permissions": ["http://localhost:3000/api"]
+
+}
