@@ -7,11 +7,11 @@ export async function fetchData(domain) {
     const name = names.get(domain);
     if (!name) {
       console.log("No name found for domain:", domain);
-      throw new Error("No name found");
+      return [];
     }
 
     // Get a list of vouchers
-    const response = await fetch("https://duh-api.netlify.app/api");
+    const response = await fetch(`https://duh-api.netlify.app/api/${name}`);
     if (!response.ok) {
       console.error("Server responded with an error:", response.status);
       throw new Error("Server responded with an error");
