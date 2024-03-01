@@ -23,7 +23,7 @@ export async function fetchData(domain) {
     for (let i = 0; i < data.length; i++) {
       voucherCodes.push(data[i].code);
     }
-    return voucherCodes;
+    return data;
   } catch (error) {
     console.error("Error fetching data:", error);
     return [];

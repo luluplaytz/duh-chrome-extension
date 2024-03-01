@@ -16,11 +16,11 @@ document.addEventListener("DOMContentLoaded", async function () {
       // Extract the domain (including subdomains) from the URL
       const domain = new URL(currentTabUrl).origin;
 
-      const voucherCodes = await fetchData(domain);
+      const voucherData = await fetchData(domain);
 
       dataList.removeChild(loadingState);
 
-      if (voucherCodes.length === 0) {
+      if (voucherData.length === 0) {
         console.log("No data fetched");
         const noVoucher = document.createElement("p");
         noVoucher.textContent = "No voucher codes found";
@@ -29,19 +29,40 @@ document.addEventListener("DOMContentLoaded", async function () {
       }
 
       // Populate the list with fetched data
-      voucherCodes.forEach((item, index) => {
+      voucherData.forEach((item, index) => {
         const listItem = document.createElement("li");
-        listItem.textContent = item;
+        
+        // Create a div to hold the content (code and description)
+        const contentContainer = document.createElement("div");
+        contentContainer.classList.add("content-container");
 
+        // Create a span for the description
+        const descriptionSpan = document.createElement("span");
+        descriptionSpan.textContent = item.description;
+        descriptionSpan.classList.add("description");
+      
+        // Create a span for the code
+        const codeSpan = document.createElement("span");
+        codeSpan.textContent = item.code;
+        codeSpan.classList.add("code");  
+      
+        // Append the spans to the content container
+        contentContainer.appendChild(descriptionSpan);
+        contentContainer.appendChild(codeSpan);
+        
         // Add click event to copy item content to clipboard and provide visual feedback
-        listItem.addEventListener("click", function () {
-          copyToClipboard(item);
+        codeSpan.addEventListener("click", function () {
+          copyToClipboard(item.code);
           highlightItem(listItem);
           showNotification("Copied to clipboard!");
         });
-
+      
+        // Append the content container to the list item
+        listItem.appendChild(contentContainer);
+      
         dataList.appendChild(listItem);
       });
+      
     }
   );
 
